@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Yeni Kişi</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device.width ,initial-scale=1" />
+	<meta http-equiv="X-UA-Conpatible" content="IE=edge" />
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="bootstrap-theme.css"></h:outputStylesheet>
+	
+</h:head>
+
+<h:body>
+	<b:navBar brand="Ana Sayfa" fixed="top" inverse="true" position="top" sticky="true" brandHref="index.xhtml">
+	     <b:navbarLinks>
+	         <b:navLink value="Kişi Listesi" href="index.xhtml"></b:navLink>
+	         <b:navLink value="Yeni Kayıt" href="yenikisi.xhtml"></b:navLink>
+	     </b:navbarLinks>
+	     
+    
+   </b:navBar>
+
+	
+	<b:row styleClass="show-grid">
+    <b:column span="3" offset="3">
+    	   
+   	<h:form>
+				
+									
+                                    Adı:<h:inputText id="ad"
+			class="form-control alphaonly"
+			requiredMessage="Adı boş bırakmayınız."
+			value="#{KisilerController.add.ad}" required="true">
+		</h:inputText>
+		<h:messages for="ad" errorClass="errorMessage"></h:messages>
+                                    Soyadı:<h:inputText id="soyad"
+			class="form-control alphaonly"
+			requiredMessage="Soyadı boş bırakmayınız."
+			value="#{KisilerController.add.soyad}" required="true">
+		</h:inputText>
+		<h:messages for="soyad" errorClass="errorMessage"></h:messages>
+                                    E-mail:<h:inputText id="mail"
+			class="form-control"
+			requiredMessage="Mail adresini boş bırakmayınız."
+			value="#{KisilerController.add.eposta}" required="true">
+		</h:inputText>
+		<h:messages for="mail" errorClass="errorMessage"></h:messages>
+			Telefon:<h:inputText id="tel" class="form-control phone_us"
+			maxlength="11" requiredMessage="Telefonu boş bırakmayınız."
+			value="#{KisilerController.i.telefon}" required="true">
+		</h:inputText>
+		<h:messages for="tel" errorClass="errorMessage"></h:messages>
+                                    Adres:<h:inputTextarea id="adres"
+			class="form-control" requiredMessage="Adresi boş bırakmayınız."
+			value="#{KisilerController.add.adres}" required="true">
+		</h:inputTextarea>
+		
+		<h:messages for="adres" errorClass="errorMessage"></h:messages>
+
+			
+			<h:commandButton class="btn btn-warning pull-right"
+			align="right" action="#{KisilerController.addKisiler()}"
+			value="Kaydet">
+		</h:commandButton>
+
+
+	</h:form>
+    
+    
+    </b:column>
+    <b:column span="3" offset="3"></b:column>
+</b:row>
+	
+
+
+
+
+
+</h:body>
+</html>

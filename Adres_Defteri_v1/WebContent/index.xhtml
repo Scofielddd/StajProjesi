@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Adres Defteri</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device.width ,initial-scale=1" />
+	<meta http-equiv="X-UA-Conpatible" content="IE=edge" />
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="bootstrap-theme.css"></h:outputStylesheet>
+	
+</h:head>
+<style>
+.tableedit{
+	right:40%;
+}
+
+</style>
+<script>
+function submitForm(myform){
+	  var myForm=document.getElementById("sa");
+	  myForm.action = "WebContent/bilgiler.xhtml";
+	  myForm.submit();
+}
+</script>
+
+<h:body>
+	<b:navBar brand="Ana Sayfa" fixed="top" inverse="true" position="top" sticky="true" brandHref="index.xhtml">
+	     <b:navbarLinks>
+	         <b:navLink value="Kişi Listesi" href="index.xhtml"></b:navLink>
+	         <b:navLink value="Yeni Kayıt" href="yenikisi.xhtml"></b:navLink>
+	     </b:navbarLinks>
+	     																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																			
+    
+   </b:navBar>
+   
+   
+	
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8">
+				<h:form target="#{KisilerController.listAllKisiler()}">
+					<div class="panel panel-info">
+						<div class="panel-heading">Adres Defteri</div>
+						<div class="panel-body">
+						
+							<b:dataTable select="#{kisi.id}"
+  selectionMode="#{KisilerController.search.id}" value="#{KisilerController.kisiler}" var="kisi">
+						    <b:dataTableColumn value="#{kisi.ad}" />
+						    <b:dataTableColumn value="#{kisi.soyad}" />
+						    <b:dataTableColumn value="#{kisi.eposta}" />
+						    <b:dataTableColumn value="#{kisi.adres}" />
+						    
+						    <b:column label="Telefonlar">																																																																																																																		
+						   		<h:form target="#{KisilerController.listAllTelefonlar(kisi.id)}">
+													<h:dataTable value="#{KisilerController.telefonlar}" var="tel"
+														class="table table-striped table-bordered">
+														<h:column>
+															<f:facet name="header">
+																<h:outputLabel value="Kayıtlı Telefon Numaraları"></h:outputLabel>
+															</f:facet>#{tel.telefon}
+														</h:column>
+														<h:column>
+															<b:commandButton class="btn btn-danger" value="SİL"
+																action="#{KisilerController.deleteTelefonlar()}">
+																<f:setPropertyActionListener value="#{tel.id}"
+																	target="#{KisilerController.i.id}">
+																</f:setPropertyActionListener>
+															</b:commandButton>
+														</h:column>
+													</h:dataTable>
+												</h:form>
+						    </b:column>
+						    <b:column label="İşlemler">
+						    <h:commandButton class="btn btn-danger pull-right"
+													action="#{KisilerController.removeKisiler()}" value="Kullanıcı Sil"></h:commandButton>
+						    
+						    </b:column>
+							</b:dataTable>
+							
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						
+						    
+	</div>
+
+
+
+	
+	
+	
+
+
+
+
+	<script src="resources/js/bootstrap.min.js"></script>
+		<script src="resources/js/bootstrap.js"></script>
+			<script src="resources/js/npm.js"></script>
+</h:body>
+</html>

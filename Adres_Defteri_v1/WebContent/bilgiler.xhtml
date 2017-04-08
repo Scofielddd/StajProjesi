@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Kişi Bilgileri</title>
+	<meta name="viewport" content="width=device.width ,initial-scale=1" />
+	<meta http-equiv="X-UA-Conpatible" content="IE=edge" />
+	<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="bootstrap-theme.css"></h:outputStylesheet>
+	
+</h:head>
+
+<h:body>
+	<b:navBar brand="Ana Sayfa" fixed="top" inverse="true" position="top" sticky="true" brandHref="index.xhtml">
+	     <b:navbarLinks>
+	         <b:navLink value="Kişi Listesi" href="index.xhtml"></b:navLink>
+	         <b:navLink value="Yeni Kayıt" href="yenikisi.xhtml"></b:navLink>
+	     </b:navbarLinks>
+	     
+    
+   </b:navBar>
+
+	<row>
+		 <b:column span="3" offset="3"><h:outputText value="span=3 offset=3"/>
+ 			<h:form target="#{KisiController.KisiBul()}">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<a href="index.xhtml">Anasayfa</a> <a href="bilgiler.xhtml">Kişi
+											Bilgileri</a>
+									</div>
+									<div class="panel-body">
+										<h:panelGrid columns="3">
+											<h:panelGrid columns="3">                                    
+                                            Adı:<h:inputText id="ad"
+													class="form-control alphaonly"
+													requiredMessage="Adı boş bırakmayınız."
+													value="#{KisilerController.search.ad}" required="true">
+												</h:inputText>
+												<h:messages for="ad" errorClass="errorMessage"></h:messages>
+                                            Soyadı:<h:inputText
+													id="soyad" requiredMessage="Soyadı boş bırakmayınız."
+													required="true" class="form-control alphaonly"
+													value="#{KisilerController.search.soyad}">
+												</h:inputText>
+												<h:messages for="soyad" errorClass="errorMessage"></h:messages>
+                                            E-mail:<h:inputText
+													id="mail" class="form-control"
+													requiredMessage="Maili boş bırakmayınız." required="true"
+													value="#{KisilerController.search.eposta}">
+												</h:inputText>
+												<h:messages for="mail" errorClass="errorMessage"></h:messages>
+                                             Adres:<h:inputTextarea
+													id="adres" requiredMessage="Adresi boş bırakmayınız."
+													required="true" class="form-control"
+													value="#{KisilerController.search.adres}">
+												</h:inputTextarea>
+												<h:messages for="adres" errorClass="errorMessage"></h:messages>
+											</h:panelGrid>
+											<h:panelGrid>
+												<h:form target="#{KisilerController.listAllTelefonlar()}">
+													<h:dataTable value="#{KisiController.telefonlar}" var="tel"
+														class="table table-striped table-bordered">
+														<h:column>
+															<f:facet name="header">
+																<h:outputLabel value="Kayıtlı Telefon Numaraları"></h:outputLabel>
+															</f:facet>#{tel.telefon}
+														</h:column>
+														<h:column>
+															<h:commandButton class="btn btn-danger" value="SİL"
+																action="#{KisilerController.deleteTelefonlar()}">
+																<f:setPropertyActionListener value="#{tel.id}"
+																	target="#{KisilerController.i.id}">
+																</f:setPropertyActionListener>
+															</h:commandButton>
+														</h:column>
+													</h:dataTable>
+												</h:form>
+											</h:panelGrid>
+											<h:panelGrid>
+											Telefon:<h:inputText class="form-control phone_us"
+													maxlength="11" value="#{KisiController.i.telefon}"></h:inputText>
+												<h:commandButton class="btn btn-warning pull-right"
+													action="#{KisilerController.addTelefonlar()}"
+													value="Telefon Ekle"></h:commandButton>
+											</h:panelGrid>
+
+											<h:panelGrid style="width: 90%" columns="2">
+												<h:commandButton class="btn btn-info pull-right"
+													action="#{KisilerController.updateKisiler}"
+													value="Kullanıcı Güncelle"></h:commandButton>
+												<h:commandButton class="btn btn-danger pull-right"
+													action="#{KisilerController.removeKisiler()}" value="Kullanıcı Sil"></h:commandButton>
+											</h:panelGrid>
+
+										</h:panelGrid>
+									</div>
+								</div>
+							</h:form>
+ 	
+ 
+ 		</b:column>
+	
+	</row>
+
+
+
+
+
+
+</h:body>
+</html>
